@@ -12,7 +12,6 @@ if (!ACCESS_TOKEN_SECRET || !REFRESH_TOKEN_SECRET) {
 export const refreshToken = async (req: Request, res: Response): Promise<void> => {
     try {
         const refreshToken = req.cookies?.refreshToken;
-        console.log(req.cookies);
         if (!refreshToken) {
             res.status(401).json({message: `Истёк срок действия refresh-токена`});
             return;
