@@ -10,7 +10,7 @@ const AUTH_API_URL = process.env.AUTH_API_URL;
 authRoutes.use(
     `/api/auth`,
     createProxyMiddleware({
-        target: `http://localhost:3000`,
+        target: AUTH_API_URL,
         changeOrigin: true,
         pathRewrite: {
             '^/api/auth': ''
