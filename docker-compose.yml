@@ -6,12 +6,35 @@ services:
       - '27017:27017'
     volumes:
       - mongo-data:/data/db
+    networks:
+      - backend
 
   redis:
     image: redis:latest
     container_name: redis
     ports:
       - '6379:6379'
+    networks:
+      - backend
+
+  auth:
+    build:
+      context: ./app/services/auth
+      dockerfile: Dockerfile
+    container_name: auth-service
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo:27017/hoshify
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
 
 volumes:
   mongo-data:
