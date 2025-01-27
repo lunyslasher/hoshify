@@ -1,4 +1,4 @@
-import {Sequelize} from "sequelize";
+import {Sequelize} from "sequelize-typescript";
 import {config} from "dotenv";
 config();
 
@@ -7,7 +7,8 @@ const sequelize = new Sequelize({
     host: process.env.DB_HOSTNAME,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+    models: [__dirname + '/models']
 });
 
 export default sequelize;
