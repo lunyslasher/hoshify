@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: 'hoshify'
+      POSTGRES_USER: 'hoshifyuser'
+      POSTGRES_PASSWORD: 'tdqrk4zz4q'
+      PG_DATA: /var/lib/postgresql/data
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+volumes:
+  pg-data:
+    driver: local
