@@ -2,7 +2,8 @@ import {MaxInt, SpotifyApi} from "@spotify/web-api-ts-sdk";
 import dotenv from "dotenv";
 import {ITrack} from "../interfaces/ITrack";
 import mapSpotifyTrack from "../utils/normalizeTrack";
-dotenv.config({path: "../../.env"});
+
+dotenv.config();
 
 const api = SpotifyApi.withClientCredentials(process.env.SPOTIFY_CLIENT_ID!, process.env.SPOTIFY_CLIENT_SECRET!);
 
@@ -16,6 +17,21 @@ class SpotifyService {
             return [];
         }
     }
+
+    async getTrackById(trackId: string): Promise<ITrack | null> {
+        try {
+            const data = await api.tracks.get(trackId);
+            if(!data) {
+                return null;
+            }
+            return mapSpotifyTrack(data);
+        } catch (e){
+            console.error(e);
+            return null;
+        }
+    }
 }
 
 export default new SpotifyService();
+
+new SpotifyService().getTrackById(`0Y84vLtyOj2demvSdJ2l7N`).then(tracks => {console.log(tracks)});

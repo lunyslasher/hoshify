@@ -15,8 +15,9 @@ app.use(routes);
 const start = async() => {
     try {
         await sequelize.authenticate();
-        await sequelize.sync();
         console.log(`Connected to database`);
+        await sequelize.sync();
+        console.log("Models synchronized");
         app.listen(process.env.PORT, () => console.log(`Listening on ${process.env.PORT}`));
     } catch (e){
         console.error(e);

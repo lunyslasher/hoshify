@@ -1,7 +1,7 @@
 import {Track} from "@spotify/web-api-ts-sdk";
 import {ITrack} from "../interfaces/ITrack";
 
-const mapSpotifyTrack = (track: Track)=> {
+const mapSpotifyTrack = (track: Track): ITrack=> {
     const normalizedTrack: ITrack = {
         name: track.name,
         album: track.album.name,
