@@ -3,6 +3,7 @@ import {config} from "dotenv";
 import sequelize from "./database";
 import routes from "./routes";
 import cookieParser from 'cookie-parser';
+import {checkS3Connection} from "./providers/s3.client";
 
 config();
 
@@ -18,6 +19,7 @@ const start = async() => {
         console.log(`Connected to database`);
         await sequelize.sync();
         console.log("Models synchronized");
+        await checkS3Connection();
         app.listen(process.env.PORT, () => console.log(`Listening on ${process.env.PORT}`));
     } catch (e){
         console.error(e);
