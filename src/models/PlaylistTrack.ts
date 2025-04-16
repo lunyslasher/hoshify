@@ -13,7 +13,7 @@ class PlaylistTrack extends Model {
     playlistId: number;
 
     @Column
-    order: number;
+    position: number;
 }
 
 export default PlaylistTrack;

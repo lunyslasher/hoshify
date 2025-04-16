@@ -12,11 +12,11 @@ class Playlist extends Model<IPlaylist> {
     @Column
     description: string;
 
-    @Column
+    @Column({allowNull: true})
     cover: string;
 
     @Column
-    private: boolean;
+    isPrivate: boolean;
 
     @BelongsToMany(() => Track, () => PlaylistTrack)
     tracks: Track[];

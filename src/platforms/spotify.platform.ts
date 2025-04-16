@@ -7,7 +7,7 @@ dotenv.config();
 
 const api = SpotifyApi.withClientCredentials(process.env.SPOTIFY_CLIENT_ID!, process.env.SPOTIFY_CLIENT_SECRET!);
 
-class SpotifyService {
+class SpotifyPlatform {
     async searchTracks(title: string, limit?: MaxInt<50>, offset?: number): Promise<ITrack[]> {
         try {
             const data = await api.search(title, [`track`], undefined, limit, offset);
@@ -32,6 +32,6 @@ class SpotifyService {
     }
 }
 
-export default new SpotifyService();
+export default new SpotifyPlatform();
 
-new SpotifyService().getTrackById(`0Y84vLtyOj2demvSdJ2l7N`).then(tracks => {console.log(tracks)});
+new SpotifyPlatform().getTrackById(`0Y84vLtyOj2demvSdJ2l7N`).then(tracks => {console.log(tracks)});
